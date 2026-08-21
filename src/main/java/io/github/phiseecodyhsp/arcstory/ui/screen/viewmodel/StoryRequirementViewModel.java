@@ -2,16 +2,16 @@ package io.github.phiseecodyhsp.arcstory.ui.screen.viewmodel;
 
 import io.github.phiseecodyhsp.arcstory.model.Chart;
 import io.github.phiseecodyhsp.arcstory.model.Partner;
-import io.github.phiseecodyhsp.arcstory.model.StoryUnlockCondition;
+import io.github.phiseecodyhsp.arcstory.model.StoryRequirement;
 import io.github.phiseecodyhsp.arcstory.res.ResourceLoader;
-import io.github.phiseecodyhsp.arcstory.ui.screen.view.StoryUnlockConditionView;
+import io.github.phiseecodyhsp.arcstory.ui.screen.view.StoryRequirementView;
 
 /**
- * @see StoryUnlockConditionView
+ * @see StoryRequirementView
  *
  * @author HSP
  */
-public class StoryUnlockConditionViewModel {
+public class StoryRequirementViewModel {
 
     private final Chart chart;
 
@@ -19,7 +19,7 @@ public class StoryUnlockConditionViewModel {
 
     private final Runnable onFinishedCallback;
 
-    public StoryUnlockConditionViewModel(StoryUnlockCondition condition, Runnable onFinishedCallback) {
+    public StoryRequirementViewModel(StoryRequirement condition, Runnable onFinishedCallback) {
         this.chart = ResourceLoader.loadChart(condition.chartLocation());
         this.partner = ResourceLoader.loadPartner(condition.partnerLocation());
         this.onFinishedCallback = onFinishedCallback;

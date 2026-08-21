@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StoryUnlockConditionTest {
+class StoryRequirementTest {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
@@ -22,7 +22,7 @@ class StoryUnlockConditionTest {
                         "partner_location": "partners/hikari"
                     }
                 """;
-        StoryUnlockCondition condition = MAPPER.readValue(json, StoryUnlockCondition.class);
+        StoryRequirement condition = MAPPER.readValue(json, StoryRequirement.class);
 
         assertEquals("charts/tutorial_pst", condition.chartLocation().getLocation());
         assertNotNull(condition.partnerLocation());
@@ -39,7 +39,7 @@ class StoryUnlockConditionTest {
                         "partner_location": null
                     }
                 """;
-        StoryUnlockCondition condition = MAPPER.readValue(json, StoryUnlockCondition.class);
+        StoryRequirement condition = MAPPER.readValue(json, StoryRequirement.class);
 
         assertEquals("charts/tutorial_pst", condition.chartLocation().getLocation());
         assertNull(condition.partnerLocation());
@@ -55,6 +55,6 @@ class StoryUnlockConditionTest {
                         "partner_location": "partners/hikari"
                     }
                 """;
-        assertThrows(ValueInstantiationException.class, () -> MAPPER.readValue(json, StoryUnlockCondition.class));
+        assertThrows(ValueInstantiationException.class, () -> MAPPER.readValue(json, StoryRequirement.class));
     }
 }

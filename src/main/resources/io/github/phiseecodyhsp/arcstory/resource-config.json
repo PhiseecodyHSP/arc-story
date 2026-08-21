@@ -74,7 +74,7 @@
     "partners": {
         "hikari": "partners/hikari.json"
     },
-    "story_unlock_conditions": {
-        "test": "story_unlock_conditions/test.json"
+    "story_requirements": {
+        "test": "story_requirements/test.json"
     }
 }

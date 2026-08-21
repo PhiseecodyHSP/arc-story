@@ -2,7 +2,7 @@ package io.github.phiseecodyhsp.arcstory.ui.screen.view;
 
 import io.github.phiseecodyhsp.arcstory.res.ResourceLoader;
 import io.github.phiseecodyhsp.arcstory.res.ResourceLocation;
-import io.github.phiseecodyhsp.arcstory.ui.screen.viewmodel.StoryUnlockConditionViewModel;
+import io.github.phiseecodyhsp.arcstory.ui.screen.viewmodel.StoryRequirementViewModel;
 import io.github.phiseecodyhsp.arcstory.ui.util.Interpolators;
 import io.github.phiseecodyhsp.arcstory.ui.util.ScreenMetrics;
 import io.github.phiseecodyhsp.arcstory.util.MathUtil;
@@ -25,7 +25,7 @@ import javafx.util.Duration;
  *
  * @author HSP
  */
-public class StoryUnlockConditionView extends StackPane {
+public class StoryRequirementView extends StackPane {
 
     /**
      * 动画持续时长.
@@ -52,7 +52,7 @@ public class StoryUnlockConditionView extends StackPane {
      */
     private static final Font FONT = ResourceLoader.loadFont(ResourceLocation.font("notosans_regular"), ILLUSTRATION_WIDTH / 7.5);
 
-    private final StoryUnlockConditionViewModel viewModel;
+    private final StoryRequirementViewModel viewModel;
 
     private final Rectangle shadow = new Rectangle(ScreenMetrics.SCREEN_WIDTH, ScreenMetrics.SCREEN_HEIGHT);
 
@@ -64,7 +64,7 @@ public class StoryUnlockConditionView extends StackPane {
 
     private final FadeTransition onContentRemovedFT;
 
-    public StoryUnlockConditionView(StoryUnlockConditionViewModel viewModel) {
+    public StoryRequirementView(StoryRequirementViewModel viewModel) {
         this.viewModel = viewModel;
 
         ImageView illustration = new ImageView(ResourceLoader.loadImage(this.viewModel.getChart().illustrationLocation()));

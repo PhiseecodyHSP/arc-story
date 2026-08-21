@@ -7,7 +7,7 @@ import io.github.phiseecodyhsp.arcstory.res.ResourceLoader;
 import io.github.phiseecodyhsp.arcstory.res.ResourceLocation;
 import io.github.phiseecodyhsp.arcstory.ui.screen.StoryScreen;
 import io.github.phiseecodyhsp.arcstory.ui.screen.viewmodel.StoryScreenViewModel;
-import io.github.phiseecodyhsp.arcstory.ui.screen.viewmodel.StoryUnlockConditionViewModel;
+import io.github.phiseecodyhsp.arcstory.ui.screen.viewmodel.StoryRequirementViewModel;
 import io.github.phiseecodyhsp.arcstory.ui.screen.viewmodel.StoryViewModel;
 import io.github.phiseecodyhsp.arcstory.viewmodel.node.AvatarNodeViewModel;
 import io.github.phiseecodyhsp.arcstory.viewmodel.StoryBranchViewModel;
@@ -74,7 +74,7 @@ public class ArcStoryLauncher extends Application {
         Runnable onConditionFinishedCallback = () -> storyScreenViewModel.setConditionView(null);
         Consumer<ResourceLocation> onConditionShownCallback = loc ->
                 storyScreenViewModel.setConditionView(
-                        new StoryUnlockConditionViewModel(ResourceLoader.loadStoryUnlockCondition(loc), onConditionFinishedCallback)
+                        new StoryRequirementViewModel(ResourceLoader.loadStoryRequirement(loc), onConditionFinishedCallback)
                 );
 
         Runnable onStoryFinishedCallback = () -> storyScreenViewModel.setStoryView(null);
@@ -94,7 +94,7 @@ public class ArcStoryLauncher extends Application {
 
         StoryBranchViewModel branch2 = new StoryBranchViewModel();
         branch2.getStoryNodes().addAll(new StoryEndpointNodeViewModel("A1", ResourceLocation.image("tutorial_illustration"), ResourceLocation.story("empty"), onStoryShownCallback),
-                new StoryEndpointNodeViewModel("A2", ResourceLocation.image("tutorial_illustration"), ResourceLocation.storyUnlockCondition("test"), ResourceLocation.story("test"), onConditionShownCallback, onStoryShownCallback),
+                new StoryEndpointNodeViewModel("A2", ResourceLocation.image("tutorial_illustration"), ResourceLocation.storyRequirement("test"), ResourceLocation.story("test"), onConditionShownCallback, onStoryShownCallback),
                 new StoryEndpointNodeViewModel("A3", ResourceLocation.image("tutorial_illustration"), ResourceLocation.story("test"), onStoryShownCallback));
         storyScreenViewModel.getStoryBranches().addAll(branch1, branch2);
         screenManager.register(storyScreen);

@@ -32,7 +32,7 @@ public class StoryScreenView extends StackPane {
 
     private final ObservableMap<StoryBranchViewModel, StoryBranch> storyBranches = FXCollections.observableHashMap();
 
-    private final ObjectProperty<StoryUnlockConditionView> conditionView = new SimpleObjectProperty<>();
+    private final ObjectProperty<StoryRequirementView> conditionView = new SimpleObjectProperty<>();
 
     private final ObjectProperty<StoryView> storyView = new SimpleObjectProperty<>();
 
@@ -71,7 +71,7 @@ public class StoryScreenView extends StackPane {
         });
 
         this.viewModel.conditionViewProperty().addListener((_, _, v) -> {
-            StoryUnlockConditionView conditionView = v == null ? null : new StoryUnlockConditionView(v);
+            StoryRequirementView conditionView = v == null ? null : new StoryRequirementView(v);
             this.conditionView.setValue(conditionView);
         });
 
