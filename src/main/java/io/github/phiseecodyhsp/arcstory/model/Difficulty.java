@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.EnumNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.EnumNaming;
 
 /**
- * Arcaea 谱面难度, 分为 Past, Present, Future, Beyond 和 Eternal.
+ * Arcaea 谱面难度, 分为 Past, Present, Future, Beyond, Eternal 和 Inscribed (Divine Oblivion包特有).
  *
  * @author RikkaKawaii0612, HSP
  */
@@ -15,7 +15,8 @@ public enum Difficulty {
     PRS("Present"),
     FTR("Future"),
     BYD("Beyond"),
-    ETR("Eternal");
+    ETR("Eternal"),
+    INS("Inscribed");
 
     private final String name;
 

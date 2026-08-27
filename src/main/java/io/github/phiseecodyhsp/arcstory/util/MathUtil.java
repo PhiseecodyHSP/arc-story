@@ -62,8 +62,11 @@ public class MathUtil {
      * @return 难度标级
      */
     public static String ratingToLevel(double rating) {
+        if(rating == 0.0D) {
+            return "?";
+        }
         int intRating = (int) rating;
-        if (rating < 0.0D) {
+        if (rating < 0) {
             intRating--;
         }
         return rating - intRating < 0.7D ? String.valueOf(intRating) : intRating + "+";

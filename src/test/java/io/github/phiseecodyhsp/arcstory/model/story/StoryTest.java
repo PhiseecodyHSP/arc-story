@@ -16,17 +16,11 @@ class StoryTest {
     @Test
     void defaultConstructor_defaultValues() {
         Story story = new Story();
-        assertEquals(Story.DEFAULT_NAME, story.getName());
+        assertNotNull(story.getPartnerLocations());
+        assertNotNull(story.getPartners());
         assertNotNull(story.getParagraphs());
         assertEquals(ArrayList.class, story.getParagraphs().getClass());
         assertTrue(story.getParagraphs().isEmpty());
-    }
-
-    @Test
-    void getName_setName_roundTrip() {
-        Story story = new Story();
-        story.setName("Test Story");
-        assertEquals("Test Story", story.getName());
     }
 
     @Test
@@ -44,7 +38,7 @@ class StoryTest {
     void deserialize_parsesSnakeCaseJson() throws Exception {
         String json = """
                 {
-                  "name": "Test Story",
+                  "partner_locations": []},
                   "paragraphs": [
                     {"type": "text", "location": {"category": "texts", "key": "test_text"}},
                     {"type": "cg", "location": {"category": "images", "key": "test_img"}}
@@ -53,7 +47,6 @@ class StoryTest {
 
         Story story = MAPPER.readValue(json, Story.class);
 
-        assertEquals("Test Story", story.getName());
         assertEquals(2, story.getParagraphs().size());
         assertEquals(ParagraphType.TEXT, story.getParagraphs().getFirst().type());
         assertEquals("texts", story.getParagraphs().getFirst().location().category());
@@ -64,11 +57,10 @@ class StoryTest {
     @Test
     void deserialize_handlesEmptyParagraphs() throws Exception {
         String json = """
-                {"name": "Empty", "paragraphs": []}""";
+                {"partner_locations": [], "paragraphs": []}""";
 
         Story story = MAPPER.readValue(json, Story.class);
 
-        assertEquals("Empty", story.getName());
         assertNotNull(story.getParagraphs());
         assertTrue(story.getParagraphs().isEmpty());
     }
@@ -77,21 +69,18 @@ class StoryTest {
     void deserialize_ignoresUnknownProperties() throws Exception {
         String json = """
                 {
-                  "name": "With Extra",
+                  "partner_locations": [],
                   "paragraphs": [],
                   "extra_field": "should be ignored",
                   "another_one": 42
                 }""";
 
         Story story = MAPPER.readValue(json, Story.class);
-
-        assertEquals("With Extra", story.getName());
     }
 
     @Test
     void serializeDeserialize_roundTrip() throws Exception {
         Story original = new Story();
-        original.setName("Round Trip");
         List<Paragraph> paragraphs = new ArrayList<>();
         paragraphs.add(new Paragraph(ParagraphType.CG,
                 new ResourceLocation("images", "test_img")));
@@ -100,7 +89,6 @@ class StoryTest {
         String json = MAPPER.writeValueAsString(original);
         Story restored = MAPPER.readValue(json, Story.class);
 
-        assertEquals("Round Trip", restored.getName());
         assertEquals(1, restored.getParagraphs().size());
         assertEquals(ParagraphType.CG, restored.getParagraphs().getFirst().type());
         assertEquals("images", restored.getParagraphs().getFirst().location().category());

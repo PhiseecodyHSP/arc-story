@@ -3,8 +3,10 @@ package io.github.phiseecodyhsp.arcstory.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import io.github.phiseecodyhsp.arcstory.res.ResourceLoader;
 import io.github.phiseecodyhsp.arcstory.res.ResourceLocation;
 import io.github.phiseecodyhsp.arcstory.util.MathUtil;
+import javafx.scene.image.Image;
 
 /**
  * 由 JSON 数据驱动的 Arcaea 谱面基本信息.
@@ -33,5 +35,9 @@ public record Chart(@JsonProperty String music,
 
     public String getLevel() {
         return MathUtil.ratingToLevel(this.rating());
+    }
+
+    public Image getIllustration() {
+        return ResourceLoader.loadImage(this.illustrationLocation);
     }
 }

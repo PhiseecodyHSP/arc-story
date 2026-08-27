@@ -90,4 +90,11 @@ class MathUtilTest {
         assertEquals("0+", MathUtil.ratingToLevel(0.8D));
         assertEquals("25+", MathUtil.ratingToLevel(25.9D));
     }
+
+    @Test
+    @DisplayName("ratingToLevel 传入的数为 0 时, 应返回单个问号")
+    void ratingToLevel_whenZero_returnsQuestionMark() {
+        assertEquals("?", MathUtil.ratingToLevel(0.0D));
+        assertEquals("?", MathUtil.ratingToLevel(-0.0D));
+    }
 }

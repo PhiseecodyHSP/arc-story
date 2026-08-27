@@ -3,6 +3,7 @@ package io.github.phiseecodyhsp.arcstory.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import io.github.phiseecodyhsp.arcstory.res.ResourceLoader;
 import io.github.phiseecodyhsp.arcstory.res.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,5 +23,13 @@ public record StoryRequirement(@JsonProperty ResourceLocation chartLocation,
         if (chartLocation == null) {
             throw new IllegalArgumentException("Chart cannot be null");
         }
+    }
+
+    public Chart getChart() {
+        return ResourceLoader.loadChart(this.chartLocation);
+    }
+
+    public Partner getPartner() {
+        return ResourceLoader.loadPartner(this.partnerLocation);
     }
 }
