@@ -12,7 +12,7 @@ public class StoryEndpointNodeViewModel extends ButtonNodeViewModel {
 
     private final ObjectProperty<ResourceLocation> storyLocation;
 
-    private final ObjectProperty<ResourceLocation> conditionLocation;
+    private final ObjectProperty<ResourceLocation> requirementLocation;
 
     public StoryEndpointNodeViewModel(@NotNull String title,
                                       @NotNull ResourceLocation illustrationLocation,
@@ -23,20 +23,20 @@ public class StoryEndpointNodeViewModel extends ButtonNodeViewModel {
 
     public StoryEndpointNodeViewModel(@NotNull String title,
                                       @NotNull ResourceLocation illustrationLocation,
-                                      @Nullable ResourceLocation conditionLocation,
+                                      @Nullable ResourceLocation requirementLocation,
                                       @NotNull ResourceLocation storyLocation,
-                                      @Nullable Consumer<ResourceLocation> onConditionShownCallback,
+                                      @Nullable Consumer<ResourceLocation> onRequirementShownCallback,
                                       @NotNull Consumer<ResourceLocation> onStoryShownCallback) {
         super(title, illustrationLocation);
 
-        this.conditionLocation = new SimpleObjectProperty<>(conditionLocation);
+        this.requirementLocation = new SimpleObjectProperty<>(requirementLocation);
         this.storyLocation = new SimpleObjectProperty<>(storyLocation);
 
         //若故事解锁条件存在, 则在被 enable 时将鼠标点击事件设为展示故事解锁条件; 否则直接 unlock
-        if (conditionLocation != null && onConditionShownCallback != null) {
+        if (requirementLocation != null && onRequirementShownCallback != null) {
             this.enabledProperty().addListener((_, _, b) -> {
                 if (b) {
-                    this.setOnMouseClicked(_ -> onConditionShownCallback.accept(this.conditionLocation.get()));
+                    this.setOnMouseClicked(_ -> onRequirementShownCallback.accept(this.requirementLocation.get()));
                 }
             });
         } else {

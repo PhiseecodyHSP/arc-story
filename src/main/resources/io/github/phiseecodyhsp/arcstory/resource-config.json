@@ -24,6 +24,15 @@
         "shutter_lephon_r": "images/shutter_r_lephon.png",
         "shutter_undyingmacula_l": "images/shutter_l_undyingmacula.png",
         "shutter_undyingmacula_r": "images/shutter_r_undyingmacula.png",
+        "shutter_catcry_l": "images/shutter_l_catcry.png",
+        "shutter_catcry_r": "images/shutter_r_catcry.png",
+        "shutter_deinosphainein_l": "images/shutter_l_deinosphinein.png",
+        "shutter_deinosphainein_r": "images/shutter_r_deinosphinein.png",
+        "song_jacket_light": "images/song_jacket_back_light.png",
+        "song_jacket_dark": "images/song_jacket_back_dark.png",
+        "song_jacket_colorless": "images/song_jacket_back_colorless.png",
+        "song_jacket_lephen": "images/song_jacket_back_lephon.png",
+        "song_jacket_dark_lephon": "images/song_jacket_back_dark_lephon.png",
         "lock": "images/song_cell_lock.png",
         "new": "images/new_badge.png"
     },
@@ -74,7 +83,7 @@
     "partners": {
         "hikari": "partners/hikari.json"
     },
-    "story_unlock_conditions": {
-        "test": "story_unlock_conditions/test.json"
+    "story_requirements": {
+        "test": "story_requirements/test.json"
     }
 }

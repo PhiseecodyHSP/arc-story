@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.*;
 import io.github.phiseecodyhsp.arcstory.model.Chart;
 import io.github.phiseecodyhsp.arcstory.model.Partner;
-import io.github.phiseecodyhsp.arcstory.model.StoryUnlockCondition;
+import io.github.phiseecodyhsp.arcstory.model.StoryRequirement;
 import io.github.phiseecodyhsp.arcstory.model.story.Story;
 import io.github.phiseecodyhsp.arcstory.util.Alerts;
 import javafx.scene.image.Image;
@@ -83,7 +83,7 @@ public final class ResourceLoader {
     private static final Map<String, Story> STORY_CACHES = new ConcurrentHashMap<>();
     private static final Map<String, Chart> CHART_CACHES = new ConcurrentHashMap<>();
     private static final Map<String, Partner> PARTNER_CACHES = new ConcurrentHashMap<>();
-    private static final Map<String, StoryUnlockCondition> STORY_UNLOCK_CONDITION_CACHES = new ConcurrentHashMap<>();
+    private static final Map<String, StoryRequirement> STORY_REQUIREMENT_CACHES = new ConcurrentHashMap<>();
 
     private ResourceLoader() {}
 
@@ -283,26 +283,26 @@ public final class ResourceLoader {
         });
     }
 
-    public static StoryUnlockCondition loadStoryUnlockCondition(ResourceLocation location) {
+    public static StoryRequirement loadStoryRequirement(ResourceLocation location) {
         String resolvedPath = resolvePath(location);
         if (resolvedPath == null) {
             return null;
         }
-        return loadStoryUnlockCondition(resolvedPath);
+        return loadStoryRequirement(resolvedPath);
     }
 
-    public static StoryUnlockCondition loadStoryUnlockCondition(String relativePath) {
-        return STORY_UNLOCK_CONDITION_CACHES.computeIfAbsent(relativePath, _ -> {
+    public static StoryRequirement loadStoryRequirement(String relativePath) {
+        return STORY_REQUIREMENT_CACHES.computeIfAbsent(relativePath, _ -> {
             try (InputStream is = loadStream(relativePath)) {
-                return MAPPER.readValue(is, StoryUnlockCondition.class);
+                return MAPPER.readValue(is, StoryRequirement.class);
             } catch (StreamReadException e) {
-                throw new IllegalArgumentException("Found invalid story unlock condition json content: " + relativePath, e);
+                throw new IllegalArgumentException("Found invalid story requirement json content: " + relativePath, e);
             } catch (DatabindException e) {
-                throw new IllegalArgumentException("Found invalid story unlock condition json structure: " + relativePath, e);
+                throw new IllegalArgumentException("Found invalid story requirement json structure: " + relativePath, e);
             } catch (IOException e) {
-                throw new IllegalArgumentException("Story unlock condition not found: " + relativePath, e);
+                throw new IllegalArgumentException("Story requirement not found: " + relativePath, e);
             } catch (Exception e) {
-                throw new IllegalArgumentException("Story unlock condition loaded failed: " + relativePath, e);
+                throw new IllegalArgumentException("Story requirement loaded failed: " + relativePath, e);
             }
         });
     }
@@ -318,6 +318,6 @@ public final class ResourceLoader {
         STORY_CACHES.clear();
         CHART_CACHES.clear();
         PARTNER_CACHES.clear();
-        STORY_UNLOCK_CONDITION_CACHES.clear();
+        STORY_REQUIREMENT_CACHES.clear();
     }
 }

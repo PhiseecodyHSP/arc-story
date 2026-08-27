@@ -6,25 +6,26 @@ import com.fasterxml.jackson.databind.annotation.EnumNaming;
 import io.github.phiseecodyhsp.arcstory.res.ResourceLocation;
 
 /**
- * 谱面的色侧, 分为光芒侧, 纷争侧, 消色侧和 Lephon 侧 (Lucent Historia 包特有).
+ * 曲目的分侧, 分为光芒侧, 纷争侧, 消色侧, Lephon 侧 (Lucent Historia 包特有) 和 Dark Lephon 侧 (名称未定, Divine Oblivion包特有).
  *
  * @author RikkaKawaii0612, HSP
  */
 @EnumNaming(EnumNamingStrategies.SnakeCaseStrategy.class)
 public enum Paradigm {
-    LIGHT(ResourceLocation.image("light")),
-    CONFLICT(ResourceLocation.image("conflict")),
-    ACHROMIC(ResourceLocation.image("achromic")),
-    LEPHON(ResourceLocation.image("lephon"));
+    LIGHT(ResourceLocation.image("song_jacket_light")),
+    CONFLICT(ResourceLocation.image("song_jacket_dark")),
+    ACHROMIC(ResourceLocation.image("song_jacket_colorless")),
+    LEPHON(ResourceLocation.image("song_jacket_lephon")),
+    DARK_LEPHON(ResourceLocation.image("song_jacket_dark_lephon"));
 
-    private final ResourceLocation imageLocation;
+    private final ResourceLocation jacket;
 
     Paradigm(ResourceLocation imageLocation) {
-        this.imageLocation = imageLocation;
+        this.jacket = imageLocation;
     }
 
-    public ResourceLocation getImageLocation() {
-        return this.imageLocation;
+    public ResourceLocation getJacket() {
+        return this.jacket;
     }
 
     @JsonCreator

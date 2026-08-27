@@ -3,8 +3,6 @@ package io.github.phiseecodyhsp.arcstory.res;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -80,7 +78,7 @@ public record ResourceLocation(@JsonProperty String category, @JsonProperty Stri
         return new ResourceLocation("partners", key);
     }
 
-    public static ResourceLocation storyUnlockCondition(String key) {
-        return new ResourceLocation("story_unlock_conditions", key);
+    public static ResourceLocation storyRequirement(String key) {
+        return new ResourceLocation("story_requirements", key);
     }
 }
