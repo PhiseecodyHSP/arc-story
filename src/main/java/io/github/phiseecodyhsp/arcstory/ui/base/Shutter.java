@@ -19,7 +19,7 @@ public enum Shutter {
     LEPHON(ResourceLocation.image("shutter_lephon_l"), ResourceLocation.image("shutter_lephon_r"), ShutterAudio.ALT),
     UNDYING(ResourceLocation.image("shutter_undyingmacula_l"), ResourceLocation.image("shutter_undyingmacula_r"), ShutterAudio.ALT),
     CATCRY(ResourceLocation.image("shutter_catcry_l"), ResourceLocation.image("shutter_catcry_r"), ShutterAudio.ALT),
-    DEINOSPHAINEIN(ResourceLocation.image("shutter_deinosphainein_l"), ResourceLocation.image("shutter_deinosphainein_r"), ShutterAudio.ALT);
+    DEINOS(ResourceLocation.image("shutter_deinosphainein_l"), ResourceLocation.image("shutter_deinosphainein_r"), ShutterAudio.ALT);
 
     private final ResourceLocation left;
     private final ResourceLocation right;
